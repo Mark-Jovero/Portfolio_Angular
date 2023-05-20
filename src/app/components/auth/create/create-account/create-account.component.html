@@ -1,0 +1,83 @@
+<div class="wrapper">
+    <div class="header">Create Account</div>
+    <div class="container">
+
+        <div class="input_container">
+            <form [formGroup]="credentialsForm">
+                <span *ngIf="hasError" class="alert">{{errorMessage.toLowerCase()}}<br><br></span>
+                <span class="input_title">Email</span><br>
+                <input formControlName="email" type="text" style="font-size: 20px;" required><br>
+                <div *ngIf="credentialsForm.get('email')?.touched && 
+                        credentialsForm.get('email')?.value == null || 
+                        credentialsForm.get('email')?.value == ''">
+                    <span class="alert">This field is required.</span><br>
+                </div>
+                <br>
+                <span class="input_title">Confirm Email</span><br>
+                <input formControlName="confirmEmail" type="text" style="font-size: 20px;" required><br>
+                
+                <div *ngIf="credentialsForm.get('email')?.value != credentialsForm.get('confirmEmail')?.value &&
+                        credentialsForm.get('confirmEmail')?.touched">
+                    <span class="alert">Emails must match.</span><br>
+                </div>
+                <div *ngIf="credentialsForm.get('confirmEmail')?.touched 
+                        && credentialsForm.get('confirmEmail')?.value == null 
+                        || credentialsForm.get('confirmEmail')?.value == ''">
+                    <span class="alert">This field is required.</span><br>
+                </div>
+
+                <br><hr>
+
+                <span class="input_title">Password</span><br>
+                <input formControlName="password" type="text" style="font-size: 20px;" required minlength="8"><br>
+                <div *ngIf="credentialsForm.get('password')?.touched 
+                        && credentialsForm.get('password')?.value == null 
+                        || credentialsForm.get('password')?.value == ''">
+                    <span class="alert">This field is required.</span><br>
+                </div>
+                <div *ngIf="credentialsForm.get('password')?.value?.length < 8 && credentialsForm.get('password')?.touched">
+                    <span class="alert">Must contain at least 8 characters.</span>
+                </div>
+                <br>
+
+                <span class="input_title">Confirm Password</span><br>
+                <input formControlName="confirmPassword" type="text" style="font-size: 20px;" required><br>
+
+                <div *ngIf="credentialsForm.get('confirmPassword')?.touched 
+                        && credentialsForm.get('confirmPassword')?.value == null 
+                        || credentialsForm.get('confirmPassword')?.value == ''">
+                    <span class="alert">This field is required.</span>
+                </div>
+                <div *ngIf="credentialsForm.get('password')?.value != credentialsForm.get('confirmPassword')?.value &&
+                    credentialsForm.get('confirmPassword')?.touched">
+                    <span class="alert">Passwords must match.</span>
+                </div>
+
+                <div *ngIf="isAccountCreationOneTimeEnabled">
+                    <br><hr>
+                    <span class="input_title">Confirmation Key</span><br>
+                    <input formControlName="key" type="text" style="font-size: 15px; width: 98%;" placeholder="Key required to create account."><br>
+                </div>
+                <div *ngIf="isAccountCreationOneTimeEnabled 
+                        && credentialsForm.get('key')?.touched 
+                        && credentialsForm.get('key')?.value == null 
+                        || credentialsForm.get('key')?.value == ''">
+                    <span class="alert">This field is required.</span>
+                </div>
+
+
+
+            </form>
+           
+        </div>
+        <span *ngIf="successfulAccountCreation"><br>Account created. Rerouting...<br></span>
+        <br>
+        <div class="button_container">
+            <a routerLink="/auth/login"><div class="button_login">Back</div></a>
+            <div *ngIf="!isDataLoading" class="button_create" (click)="submitCreateCredentials()" style="font-weight: bold;">Create Account</div>
+            <div *ngIf="isDataLoading" class="button">
+                <img width='24px' src="./assets/bubble-loading.svg">
+            </div>
+        </div>
+    </div>
+</div>

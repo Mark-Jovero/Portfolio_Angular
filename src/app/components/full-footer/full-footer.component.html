@@ -1,0 +1,27 @@
+<div class="__container">
+    <div class="col B">
+        <div class="title">SITE</div>
+        <div class="site_container">
+            
+            <!-- <div class="sitemap_expandable" (click)="smClicked($event)">site map
+                <div style="padding-left:3px"><a routerLink="/">&#8594; portfolio</a></div>
+                <div style="padding-left:3px"><a routerLink="/">&#8594; about me</a></div>
+                <div style="padding-left:3px"><a routerLink="/">&#8594; contact</a></div>
+            </div> -->
+            <div><a href="https://github.com">about</a></div>
+            <div><a href="https://github.com">source code</a></div>
+            <div *ngIf="isLoggedIn"><a routerLink="/admin/dashboard">dashboard</a></div>
+            <div><a routerLink="/auth/login" (click)="userLogClick()">{{isLoggedInText}}</a></div>
+        </div>
+    </div>
+    <div class="col C">
+        <div class="title">CONNECT</div>
+        <div class="social_container">
+            <div class="clickable_img" style="z-index: 3 !important; position: relative;"><a href="https://linkedin.com"><img class="small_logo" src="./assets/linkedin.png" alt="image"></a>
+                <div style="position: absolute; z-index: -1 !important; top: 2px; width: 34px; height: 34px; background-color: white;"></div>
+            </div>
+            <div class="clickable_img"><a href="https://twitter.com"><img class="small_logo" src="./assets/twitter.png" alt="image"></a></div>
+            <div class="clickable_img"><a href="https://github.com"><img class="small_logo" src="./assets/github.png" alt="image"></a></div>
+        </div>
+    </div>
+</div>

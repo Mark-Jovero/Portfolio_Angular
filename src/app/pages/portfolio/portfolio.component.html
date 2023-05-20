@@ -1,0 +1,50 @@
+<div class="container">
+    <div *ngIf="postsLoaded && this.isLoggedIn && this.pm.clickedId == '-1'" (click)="onAddClick()" class="addButton"><img src="./assets/add_post.png" width="40px"></div>
+    <div *ngIf="errorMessage">{{errorMessage}}</div>
+    <div *ngIf="this.pm.clickedId != '-1'">
+    <app-post-component
+        index={{this.selected.Index}}
+        etag={{this.selected.ETag}} 
+        title={{this.selected.Title}} 
+        description={{this.selected.Description}}
+        content={{this.selected.TextArea}}
+        meta={{this.selected.Meta}} 
+        date={{this.selected.dateModified}}
+        file={{this.selected.Name}}
+        isLoaded={{this.selected.isLoaded}}
+        opened={{true}}>
+    </app-post-component>
+    </div>
+    <div class="divider" *ngIf="this.pm.clickedId == '-1'">
+        <div *ngIf="postsLoaded">
+            <div  class="post_card" *ngFor="let r of objectKeys(this.pm.posts[this.pm.currentPage])">
+                
+                <div *ngIf="toNumber(r) > 0">
+                    <app-post-component 
+                        descImage={{this.pm.posts[this.pm.currentPage][r].DescThumbnail}}
+                        index={{this.pm.posts[this.pm.currentPage][r].Index}}
+                        etag={{this.pm.posts[this.pm.currentPage][r].ETag}} 
+                        title={{this.pm.posts[this.pm.currentPage][r].Title}} 
+                        description={{this.pm.posts[this.pm.currentPage][r].Description}}
+                        content={{this.pm.posts[this.pm.currentPage][r].TextArea}}
+                        meta={{this.pm.posts[this.pm.currentPage][r].Meta}} 
+                        date={{this.pm.posts[this.pm.currentPage][r].dateModified}}
+                        file={{this.pm.posts[this.pm.currentPage][r].Name}}
+                        isLoaded={{this.pm.posts[this.pm.currentPage][r].isLoaded}}>
+                    </app-post-component>
+                </div>
+                <div *ngIf="this.pm.posts[this.pm.currentPage].length-1; let p;"><hr class="hr_d" *ngIf="toNumber(r) != p && toNumber(r) > 0"></div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="postsLoaded && this.pm.clickedId == '-1'" class="page_mover_container">
+    <div class="pageControlArrow prev"
+        (click)="onPrevPageClick()"><</div>
+    <div class="page_number">{{this.pm.currentPage}} of {{this.pm.maxPage}}</div> 
+    <div class="pageControlArrow next" 
+        (click)="onNextPageClick()">></div>
+</div>
+<div *ngIf="postsLoaded" style="font-size: 9px; color: rgb(78, 78, 78)">CACHE KEY: {{cacheKey}}</div>

@@ -1,0 +1,145 @@
+.container {
+    width: 80%;
+    min-width: 300px;
+    padding: 10px !important; 
+    
+}
+
+.preview_container {
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(225, 225, 225);
+    border: 1px solid rgb(180, 180, 180);
+    padding: 2px;
+    word-wrap: break-word;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+}
+
+.thumbnail_pc {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.tn_image {
+    position: relative;
+    width: 120px;
+    margin-right: 10px;
+    left: 0 !important;
+    top: 0;
+}
+
+.input_wrap {
+    width: 100%;
+}
+
+.editor_input_title {
+    width: 100%;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    font-size: 20px;
+    
+}
+
+.editor_input_desc {
+    width: 100%;
+    height: 2em;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    font-size: 14px; 
+}
+
+.editor_input_content {
+    width: 100%;
+    min-height: 500px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    font-size: 14px;
+}
+
+.buttons_container {
+    margin-bottom: 4px;
+    width: 70%;
+    display: flex;
+    float: right;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+
+.div_title {
+    background-color: var(--container_color);
+    position: relative;
+    top: -10px;
+    left: 5px;
+    height: fit-content;
+    padding: 0px 5px 0px 5px;
+}
+
+.formButtonContainer {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+
+.formButton {
+    width: 120px;
+    height: 50px;
+}
+
+.formButton:hover {
+    cursor: pointer;
+}
+
+.imageUploadContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.imageUploadContainer > div {
+    display: grid;
+    grid-template-columns: 50px auto;
+}
+
+.imageUploadContainer > div > div {
+    border: 1px dashed black;
+    word-break: break-all;
+    background-color: lightgrey;
+    width: fit-content;
+    margin-left: 10px;
+    padding: 4px;
+}
+
+.title {
+    color: var(--light_color);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.title:hover {
+    color: rgb(108, 103, 103);
+}
+
+.date {
+    color: rgb(104, 104, 104);
+    font-size: 12px;
+}
+
+.meta {
+    color: rgb(104, 104, 104);
+    font-size: 12px;
+}
+
+.content {
+    position: relative;
+    height: 3em;
+    line-height: 1em;
+    overflow-y: hidden;
+}
+
+.content_full {
+    position: relative;
+}

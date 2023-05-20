@@ -1,0 +1,46 @@
+@keyframes darktolight { 
+    0%{background-position:82% 0%}
+    50%{background-position:19% 100%}
+    100%{background-position:82% 0%}
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:82% 0%}
+    50%{background-position:19% 100%}
+    100%{background-position:82% 0%}
+}
+
+.wrapper {
+    width: 100%;
+    height: 145px;
+    background-color: rgba(171, 171, 171, 0.618);
+}
+
+.title {
+    width: 100%;
+    height: 40px;
+    animation-name: darktolight;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    background: linear-gradient(205deg, #b9b9b9, #a3a3a3, #d2cece);
+    background-size: 600% 600%;
+}
+
+.meta {
+    width: 100%;
+    height: 20px;
+    margin-top: 3px;
+    animation: AnimationName 2s ease infinite;
+    background: linear-gradient(205deg, #b9b9b9, #a3a3a3, #d2cece);
+    background-size: 600% 600%;
+}
+
+.content {
+    width: 100%;
+    height: 2em;
+    line-height: 1em;
+    margin-top: 3px;
+    animation: AnimationName 2s ease infinite;
+    background: linear-gradient(205deg, #b9b9b9, #a3a3a3, #d2cece);
+    background-size: 600% 600%;
+}

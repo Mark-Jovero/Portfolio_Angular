@@ -1,0 +1,92 @@
+<div *ngIf="submitInProgress"><app-loading-screen message="Please wait while post is being submitted..."></app-loading-screen></div>
+<div class="">
+    <div class="header">Post Editor</div>
+    <img id="ItemPreview" src="">
+    <div class="container">
+        <div id="preview" class="preview_container"><span class="div_title">Thumbnail</span>
+                
+                <div class="thumbnail_pc">
+                    <div *ngIf="!thumbnailLoading"><img class="tn_image" src={{this.pm.getThumbnail()}} width="50px" onerror="if (this.src != 'error.jpg') this.src = './assets/CodeBracketSquare.svg';"></div>
+                    <div *ngIf="thumbnailLoading"><img class="tn_image" src='./assets/bubble-loading.svg' width="40px" onerror="if (this.src != 'error.jpg') this.src = './assets/CodeBracketSquare.svg';"></div>
+                    <div>
+                        <div class="title">{{this.pm.getTitle()}}</div>
+                        <div class="date">{{date.toLocaleString()}} </div>
+                        <div class="meta">{{this.pm.getMeta() || '-'}}</div>
+                        <div class="content">{{this.desc}}</div>
+                    </div>
+                </div>
+        </div> <br />
+        <div id="preview" class="preview_container"><span class="div_title">Preview</span>
+            <div class="title">{{this.pm.getTitle()}}</div>
+            <div class="date">{{date.toLocaleString()}} </div>
+            <div class="meta">{{this.pm.getMeta() || '-'}}</div>
+            <div class="content_full" [innerHTML]="html | safeHtml" ></div>
+        </div>
+        <form class="input_form" [formGroup]="TextEditorForm">
+            <div class="input_wrap">
+                <div class="input_title">Title</div>
+                <input 
+                    class="editor_input_title" 
+                    placeholder="Type a title for the post" 
+                    formControlName="Title">
+                <br><br>
+                <div class="input_title">Keywords</div>
+                <input 
+                    class="editor_input_title" 
+                    placeholder="Keyword data will be used for searching. Separate with space or comma." 
+                    formControlName="Meta">
+                <br><br>
+                <div class="input_title">Thumbnail Description ({{char_length}} remaining characters.) </div>
+                <textarea 
+                    style="white-space: pre-wrap;" 
+                    type="text" 
+                    class="editor_input_desc" 
+                    placeholder="Enter a description for the thumbnail" 
+                    formControlName="TextAreaDesc"
+                    maxlength="150"
+                    (input)="onTextAreaDescInputLimiter($event)"></textarea>
+                    Upload Thumbnail Image:
+                    <input class="formButton_upload" type="file" (change)="uploadThumbnailClicked($event)">
+                <br><br>
+                <div class="input_title">Text
+                    <div class="buttons_container">
+                        <div *ngFor="let tag of tags" class="tag_button"><button style="width:60px;" (click)="onTagClick(tag)">{{tag.getTag()}}</button></div>
+                    </div>
+                </div>
+                
+                <textarea 
+                    style="white-space: pre-wrap;" 
+                    type="text" 
+                    class="editor_input_content" 
+                    placeholder="Type content" 
+                    formControlName="TextArea"
+                    (click)="onTextAreaClick($event)"
+                    (mouseout)="onTextAreaClick($event)"
+                    (keydown)="catchArrowClicks($event)"
+                    (input)="onTextAreaInput($event)"></textarea>
+                <div class="alert" *ngFor="let error of tagError">
+                    <span style="color:red;">{{error}}</span>
+                </div>
+                Upload Image:
+                <input class="formButton_upload" type="file" (change)="uploadPhoto($event)"><br><br>
+                <div *ngIf="this.imageArray.length > 0">
+                    <span>Click on box to copy to clipboard, then paste into text body to use image.</span>
+                    <div class="imageUploadContainer" *ngFor="let r of this.imageArray">
+                        <div><img src={{r}} height="30px"><div (click)="uploadImageClick($event)">&lt;img src="{{r}}" width="50px"&gt;</div></div>
+                    </div>
+                    <br>
+                </div>
+                <div class="formButtonContainer">
+                    <button class="formButton" type="button" (click)="previewClicked()">Preview</button>
+                    <button class="formButton" type="button" (click)="submitPost()"><div>Submit</div></button>
+                    <button class="formButton" type="button" (click)="resetClicked()">Reset</button>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+
+    
+
+    
+</div>

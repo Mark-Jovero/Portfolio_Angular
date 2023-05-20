@@ -1,0 +1,49 @@
+.input_container {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.alert {
+    color: red;
+    font-weight: bold;
+    width: 100px !important;
+}
+
+.button_container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    width: fit-content;
+    margin: 0 auto;
+
+    color: white;
+}
+
+.button_create {
+    background-color: rgb(105, 150, 105);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.button_create:hover {
+    background-color: rgb(135, 160, 135);
+    cursor: pointer;
+}
+
+.button_login {
+    background-color: rgb(115, 131, 115);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.button_login:hover {
+    background-color: rgb(135, 160, 135);
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}

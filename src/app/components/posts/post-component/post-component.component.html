@@ -1,0 +1,46 @@
+<div *ngIf="deleteInProgress"><app-loading-screen message="Deleting..."></app-loading-screen></div>
+<div class="wrapper">
+
+    <div>
+        <div *ngIf="parsedOpened">
+            <div *ngIf="isLoggedIn">
+                <div class="button_container" style="float: left;">
+                    <div class="post_back_button" (click)="returnClicked()"><img src="./assets/icons8-back-64.png" width="25px"></div>
+                    <div (click)="onEditClick()"><img src="./assets/PencilSquare.svg" width="25px"></div>
+                    <div (click)="onDeleteClick()"><img src="./assets/Trash.svg" width="25px"></div>
+                </div>
+            </div>
+            <div *ngIf="!isLoggedIn">
+                <div class="button_container" style="float: left;">
+                    <div class="post_back_button" (click)="returnClicked()"><img src="./assets/icons8-back-64.png" width="25px"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="parsedOpened">
+            <div>&nbsp;</div>
+            <br><br>
+            <div [class]="title_style" id={{etag}}>{{title}}</div>
+            <div [class]="date_style">{{date}} </div>
+            <div [class]="meta_style">{{meta || '-'}}</div> <br>
+            <div [class]="content_style" [innerHTML]="content | safeHtml" style="height:fit-content; min-height: 600px;"></div>
+        </div>
+        <div class="wrapper_post_card" *ngIf="!parsedOpened">
+            <div *ngIf="isLoggedIn && isLoaded" class="button_container">
+                <div (click)="onEditClick()"><img src="./assets/PencilSquare.svg" width="25px"></div>
+                <div (click)="onDeleteClick()"><img src="./assets/Trash.svg" width="25px"></div>
+            </div>
+            <div (click)="onPostOpen()" class="post_card_container" >
+                <div [class]="thumbnail_container_style"><img [class]="thumbnail_style" src={{descImage}}  onerror="if (this.src != 'error.jpg') this.src = './assets/CodeBracketSquare.svg';"></div>
+                <div>
+                    <div [class]="title_style" id={{etag}}>{{title}}</div>
+                    <div [class]="date_style">{{date}} </div>
+                    <div [class]="meta_style">{{meta || '-'}}</div>
+                    <div [class]="content_style">{{description}}</div>
+                </div>
+            </div>
+            <div (click)="onPostOpen()" style="position: relative; color: rgb(50, 50, 50); text-align: center;"></div>
+            
+        </div>
+       
+    </div>
+</div>

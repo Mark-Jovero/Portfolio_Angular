@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <div class="title">Admin Dashboard</div>
+    <div class="container container_style">
+        <div class="grid_col_1">
+            <div>
+                <div class="sub_title">Preferences</div>
+                <div class="preferences_form">
+                    <form>
+                        <input type="checkbox"> Dark Mode
+                        <br><br>
+                        <button type="submit">Apply</button>
+                    </form>
+                </div><br>
+                <hr>
+                <div class="sub_title">Site Settings</div>
+                <form [formGroup]="siteSettingsFormGroup" (submit)="siteSettingsOnSubmit($event, siteSettingsFormGroup)">
+                    <input type="checkbox" formControlName="accountCreationCB"> Enable Account Creation <br>
+                    <div *ngIf="siteSettingsFormGroup.get('accountCreationCB')?.value">&nbsp; &nbsp;<input type="checkbox" formControlName="accountCreationOneTimeCB" value="true"> Enable for one time only <br>
+                    <div *ngIf="creation_key && siteSettingsFormGroup.get('accountCreationOneTimeCB')?.value && !key_loading">&nbsp;&nbsp;&emsp;&nbsp;&nbsp;Creation Key: <b>{{creation_key}}</b></div>
+                    <div *ngIf="key_loading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&nbsp;&nbsp;<img width='18px'src="./assets/bubble-loading.svg"></div>
+                    </div>
+                    <input type="checkbox"> Enable All Backend Routing <br><br>
+                   
+                    <button type="submit">Apply</button>
+                    <span *ngIf="recieved_server_response_settingSet"> {{display_message_settingSet_status.innerText}}</span>
+                </form>
+                <hr>
+            </div>
+        </div>
+        
+
+        <div class="grid_col_2"></div>
+
+        <div class="website_statistics_wrapper">
+            <div class="sub_title">Statistics</div>
+            <div class="website_statistics_container">
+                <div class="label">Unique Visits:</div><div>{{uniq_count}}</div>
+                <div class="label">Unique Visits:</div><div>1</div>
+                <div class="label">Unique Visits:</div><div>1</div>
+            </div>
+        </div>
+
+        <div class="user_info_wrapper">
+            <div class="sub_title">Your Current Sessions</div>
+                <div *ngFor="let session of session_data | keyvalue">
+                    <div class="website_statistics_container">
+                        <div style="border-right: 1px solid black; border-bottom: 1px solid rgb(110, 108, 108); background-color: rgb(192, 192, 192);" class="label" >SessionID:</div><div style="border-bottom: 1px solid rgb(110, 108, 108);  background-color: rgb(192, 192, 192); padding-left: 6px;">{{session.value['session_cookie']}}<div class="session_remove_btn" (click)="removeSession(session.value['id'], session.value['session_cookie'])">[delete]</div></div>
+                        <div style="border-right: 1px solid black; border-bottom: 1px solid rgb(110, 108, 108);  background-color: rgb(255, 255, 255);">IP:</div><div style="border-bottom: 1px solid rgb(110, 108, 108);  background-color: rgb(255, 255, 255); padding-left: 6px;">{{session.value['ip']}}</div>
+                        <div style="border-right: 1px solid black; border-bottom: 1px solid rgb(110, 108, 108);  background-color: rgb(192, 192, 192);">Device:</div><div style="border-bottom: 1px solid rgb(110, 108, 108);  background-color: rgb(192, 192, 192); padding-left: 6px;">{{session.value['device_information']}}</div>
+                        <div style="border-right: 1px solid black; background-color: rgb(255, 255, 255);">Expires:</div><div style="background-color: rgb(255, 255, 255); padding-left: 6px;">{{formatDate(session.value['expiry'])}}</div><br>
+                    <div></div>
+                </div> 
+            </div>
+
+        </div>
+    </div>
+
+</div>

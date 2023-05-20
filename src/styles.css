@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --main_color: rgb(48, 56, 73);
+    --light_color: rgb(90, 105, 138);
+    --link_color: rgb(66, 74, 91);
+    --font_color: rgb(255, 255, 255);
+
+    --container_color: rgb(227, 227, 227);
+}
+
+.container_style {
+    border-radius: 5px;
+    background-color: var(--container_color);
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+
+    width: 300px;
+    word-wrap: break-word;
+    height: fit-content;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    padding: 12px;
+
+    background-color: var(--container_color);
+    border-radius: 5px;
+    border: 0.5px solid rgb(190, 190, 190);
+}
+
+.header {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 16px;
+
+    width: fit-content;
+
+    font-size: 25px;
+}
+
+
+
+.input_title {
+    font-weight: bold; 
+    padding-bottom: 2px;
+}
+
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .container {
+        width: 95% !important;
+        padding: 2px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+  }

@@ -1,0 +1,42 @@
+<div class="wrapper">
+    <div class="header">Sign In</div>
+    <div class="container">
+
+        <div class="input_container">
+
+            <div *ngIf="invalidCredentials" class="alert">{{responseMessage}}</div>
+            <div *ngIf="errorOccured" class="alert">{{errorMessage}}</div>
+            
+            <span class="input_title">Email</span> <br>
+            <input class="input-email" id="email" name="email" type='email' [formControl]='emailInput' required> <br> <br>
+            <div *ngIf="emailInput.invalid && emailInput.touched" class="alert">
+                <div *ngIf="emailInput.errors?.['required']">
+                    Email is required.
+                </div>
+            </div>
+
+
+            <span class="input_title">Password</span> <br>
+            <input class="input-email" name="password" type='password' [formControl]='passwordInput' minlength="8" required><br><br>
+            <div *ngIf="passwordInput.invalid && passwordInput.touched" class="alert">
+                <div *ngIf="passwordInput.errors?.['required']">
+                    Password is required.
+                </div>
+                <div *ngIf="passwordInput.errors?.['minlength']">
+                    Minimum password length is 8 characters.
+                </div>
+            </div>
+        </div>
+        <div class="button_container">
+            <div *ngIf="!isDataLoading" class="button login_button" (click)="submitLoginCredentials()">Login</div>
+            <div *ngIf="isDataLoading" class="button">
+                <img width='24px' src="./assets/bubble-loading.svg">
+            </div>
+            <br>
+            <div *ngIf="accountCreationEnabled" class="button create_acc_button"><a routerLink="/auth/create-account">Create Account</a></div>
+        </div>
+
+        <div *ngIf="!accountCreationEnabled" style="width: 100%; text-align: center; font-size: 12px;"><br>(Account creation is disabled.)<br></div>
+    
+    </div>
+</div>
