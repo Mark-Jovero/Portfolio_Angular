@@ -11,7 +11,7 @@
             <div><a href="https://github.com">about</a></div>
             <div><a href="https://github.com">source code</a></div>
             <div *ngIf="isLoggedIn"><a routerLink="/admin/dashboard">dashboard</a></div>
-            <div><a routerLink="/auth/login" (click)="userLogClick()">{{isLoggedInText}}</a></div>
+            <div (click)="userLogClick()" class="log_link">{{isLoggedInText}}</div>
         </div>
     </div>
     <div class="col C">

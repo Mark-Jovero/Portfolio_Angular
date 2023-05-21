@@ -104,7 +104,7 @@ export class PortfolioComponent {
     }
 
 
-    this.isLoggedIn = this.ls.isLoggedIn
+    this.isLoggedIn = this.ls.isLoggedIn.value
     
     this.loadPosts();
     this.pm.updateMaxPage();

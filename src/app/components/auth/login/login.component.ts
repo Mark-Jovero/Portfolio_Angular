@@ -60,8 +60,8 @@ export class LoginComponent {
       this.errorOccured = false;
       if (parsedServerResponse.__status == true) {
         this.invalidCredentials = false;
-        this.ls.isLoggedIn = true;
-        location.href = '/admin/dashboard'
+        //this.ls.setLoginStatus(true);
+        this.router.navigate(['/admin/dashboard'])
       }
       else if (parsedServerResponse.__status == false) {
         if (parsedServerResponse.hasError) {

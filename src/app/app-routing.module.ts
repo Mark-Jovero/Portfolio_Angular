@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: "auth/login", component: LoginComponent, canActivate: [LoginGuard]},
   {path: "auth/create-account", component: CreateAccountComponent},
   {path: "admin/dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: "home", component: PortfolioComponent},
+  {path: "", component: PortfolioComponent},
   {path: "posts/:postid", component: PortfolioComponent},
   {path: "editor", component: PostEditorComponent, canActivate: [AuthGuard]},
   {path: "page/:page", component: PortfolioComponent},
@@ -23,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true}) ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

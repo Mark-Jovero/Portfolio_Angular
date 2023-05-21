@@ -1,4 +1,5 @@
 'use strict';
+// http://ec2-50-16-64-180.compute-1.amazonaws.com:3001/
 export const BACKEND_HOST = 'http://192.168.7.238:3001/';
 
 export const BACKEND = {

@@ -8,6 +8,7 @@ const request = require('request')
 const formidable = require('formidable');
 const fs = require('fs')
 require('dotenv').config();
+
 app.get('/get/all_posts', async (req, res) => {
     let posts = []
     let rs = await getAllObjectsInFolder('posts', '.txt', (err, result) => {

@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { catchError, EMPTY, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, map, Observable, throwError } from 'rxjs';
 import { CookieDeleteService } from '../cookie/cookie-delete.service';
 import { CookieReadService } from '../cookie/cookie-read.service';
 import { lastValueFrom } from 'rxjs';
 import { BACKEND_HOST } from '../../../globals'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  isLoggedIn = false;
+  isLoggedIn =  new BehaviorSubject<boolean>(false);
   payload = ''
 
-  constructor(private http : HttpClient, private coockieDelete : CookieDeleteService, private cookieRead : CookieReadService) {
+  constructor(private http : HttpClient, private coockieDelete : CookieDeleteService, private cookieRead : CookieReadService, private router: Router) {
     if (cookieRead.read('session_cookie')) {
-      this.isLoggedIn = true;
+      this.isLoggedIn.next(true)
+      console.log(this.isLoggedIn)
     }
+  }
+
+  setLoginStatus(status: boolean) {
+    this.isLoggedIn.next(status);
   }
 
   getUserId() {
@@ -58,9 +64,11 @@ export class LoginService {
     let status = parsedPayload.__status;
     
     if (status == true) {
-      this.isLoggedIn = true;
+      console.log(this.isLoggedIn)
+      //this.isLoggedIn.next(true);
     } else {
-      this.isLoggedIn = false;
+      //console.log(this.isLoggedIn.getValue())
+      this.isLoggedIn.next(false);
     }
 
     return parsedPayload;
@@ -75,11 +83,11 @@ export class LoginService {
 
     this.http.post(BACKEND_HOST + 'auth/logout', data).subscribe();
 
-    this.isLoggedIn = false;
+    this.isLoggedIn.next(false);
     this.coockieDelete.delete('session_cookie');
     this.coockieDelete.delete('user_id');
 
-    location.href = '/auth/login'
+    this.router.navigate(['/auth/login']);
   }
 
   private requestSessions(user_id : string | undefined, session_cookie : string | undefined) : Observable<string> {
@@ -125,10 +133,10 @@ export class LoginService {
     console.log(parsedRes)
 
     if (parsedRes) {
-      this.isLoggedIn = parsedRes.__status;
+      this.isLoggedIn.next( parsedRes.__status);
     }
 
-    return this.isLoggedIn;
+    return this.isLoggedIn.value;
   }
 
   request_session_remove(session_id_key : string, session_id : string) : {} {

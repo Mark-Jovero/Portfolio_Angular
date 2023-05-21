@@ -6,14 +6,14 @@ const hostname = '127.0.0.1';
 const port = 3001;
 require('dotenv').config();
 
-process.env.SESSION_EXPIRE; // "239482"
-process.env.HOST; // "foobar"
+process.env.SESSION_EXPIRE; 
+process.env.HOST; 
 
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     //res.setHeader('Access-Control-Allow-Origin', ['https://s3.amazonaws.com/files.portfolio.markjovero.com', 'http://' + process.env.HOST + ':4200']);
-    const allowedOrigins = ['https://s3.us-east-1.amazonaws.com', 'http://' + process.env.HOST + ':4200'];
+    const allowedOrigins = ['https://s3.us-east-1.amazonaws.com', 'http://' + process.env.HOST_IP, 'http://markjovero.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
          res.setHeader('Access-Control-Allow-Origin', origin);

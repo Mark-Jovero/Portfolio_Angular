@@ -14,7 +14,7 @@ export const AuthGuard = async () => {
 
   await ls.validateSession(cookieRead.read('user_id'), cookieRead.read('session_cookie'));
 
-  if (ls.isLoggedIn) {
+  if (ls.isLoggedIn.getValue()) {
     if (isDevMode())
       console.log('AUTH GUARD SUCCESS : going to admin due to valid session')
     return true;

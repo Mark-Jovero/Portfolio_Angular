@@ -41,7 +41,7 @@ export class PostComponentComponent {
 
 
   ngOnInit() {
-    this.isLoggedIn = this.ls.isLoggedIn
+    this.isLoggedIn = this.ls.isLoggedIn.value
     this.parsedOpened = this.opened === 'true';
     this.isLoaded = this.isLoaded == 'true' ? true : false;
 

@@ -11,7 +11,7 @@ export const LoginGuard = async () => {
   const router = inject(Router);
   const cookieRead = inject(CookieReadService);
 
-  if (!ls.isLoggedIn) {
+  if (!ls.isLoggedIn.getValue()) {
     if (isDevMode())
       console.log('LOGIN GUARD SUCCESS : going to login page due to invalid session.')
     return true;
