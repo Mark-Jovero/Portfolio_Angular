@@ -14,6 +14,7 @@ import { Header1Component } from '../tags/header1.component';
 import { ItalicsComponent } from '../tags/italics.component';
 import { Tag } from '../tags/tag_interface';
 import { Router } from '@angular/router';
+import { iFrameComponent } from '../tags/iframe.component';
 
 @Component({
   selector: 'app-post-editor',
@@ -51,7 +52,7 @@ export class PostEditorComponent {
 
   hasXSSAlert: boolean = false;
 
-  tags: Array<Tag> = [new ItalicsComponent(), new BoldComponent(), new DivComponent(), new AnchorComponent(), new BreakComponent(), new ImageComponent(null),
+  tags: Array<Tag> = [new iFrameComponent(), new ItalicsComponent(), new BoldComponent(), new DivComponent(), new AnchorComponent(), new BreakComponent(), new ImageComponent(null),
     new Header1Component()];
   tagError: Array<string> = [];
 
