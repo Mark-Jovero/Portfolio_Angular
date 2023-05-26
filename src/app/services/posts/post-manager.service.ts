@@ -220,7 +220,7 @@ export class PostManagerService {
 
   private add_image(fileName: string | undefined, imageFile: string) {
     console.log("file1: ",imageFile)
-    return this.http.post(BACKEND_HOST + '/test12',
+    return this.http.post(BACKEND_HOST + 'test12',
       {fileName: fileName, file: imageFile},
       {responseType: 'text', withCredentials: true }).pipe(
       map(response => response));
