@@ -1,4 +1,7 @@
+                                                                                  
 const http = require('http');
+var https = require('https');
+var fs = require('fs');
 const db = require('./database.js')
 const express = require('express')
 const app = express()
@@ -9,11 +12,19 @@ require('dotenv').config();
 process.env.SESSION_EXPIRE; 
 process.env.HOST; 
 
+var options = {
+//      key: fs.readFileSync('../../certs/key1.key'),
+//      cert: fs.readFileSync('../../certs/cert1.crt'),
+  key: fs.readFileSync('../../certs/apicert/api.markjovero.com_key.txt'),
+  cert: fs.readFileSync('../../certs/apicert/api.markjovero.com.crt'),
+  ca: fs.readFileSync('../../certs/apicert/api.markjovero.com.ca-bundle')
+};
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
     //res.setHeader('Access-Control-Allow-Origin', ['https://s3.amazonaws.com/files.portfolio.markjovero.com', 'http://' + process.env.HOST + ':4200']);
-    const allowedOrigins = ['https://s3.us-east-1.amazonaws.com', 'http://' + process.env.HOST_IP, 'http://markjovero.com'];
+    const allowedOrigins = ['https://www.markjovero.com', 'https://markjovero.com', 'https://s3.us-east-1.amazonaws.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
          res.setHeader('Access-Control-Allow-Origin', origin);
@@ -40,9 +51,10 @@ app.use(require('./auth/authentication.js'))
 app.use(require('./stats/stats_report.js'))
 app.use(require('./settings/account_creation.js'))
 app.use(require('./file_upload/file_upload.js'))
-app.listen(port, process.env.HOST, () => {
-  console.log(`Server running at http://${process.env.HOST}:${port}/`);
-});
+//app.listen(port, () => {
+//  console.log(`Server running at http://${process.env.HOST}:${port}/`);
+//});
+https.createServer(options, app).listen(8443);
 
 /**
  * SIGNATURE

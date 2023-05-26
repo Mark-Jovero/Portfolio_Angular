@@ -1,6 +1,8 @@
 'use strict';
-// http://ec2-50-16-64-180.compute-1.amazonaws.com:3001/
-export const BACKEND_HOST = 'http://192.168.7.238:3001/';
+const deployed = 'https://api.markjovero.com:8443/'
+const local = 'http://192.168.7.238:3001/'
+
+export const BACKEND_HOST = deployed;
 
 export const BACKEND = {
     protected_routes: {

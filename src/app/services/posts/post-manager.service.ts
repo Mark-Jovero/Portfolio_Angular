@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, lastValueFrom, map, Observable } from 'rxjs';
 import { CookieReadService } from '../cookie/cookie-read.service';
-import { BACKEND } from 'src/globals';
+import { BACKEND, BACKEND_HOST } from 'src/globals';
 import { EMPTY_OBSERVER } from 'rxjs/internal/Subscriber';
 import { Filename } from 'aws-sdk/clients/elastictranscoder';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -220,7 +220,7 @@ export class PostManagerService {
 
   private add_image(fileName: string | undefined, imageFile: string) {
     console.log("file1: ",imageFile)
-    return this.http.post('http://192.168.7.238:3001/test12',
+    return this.http.post(BACKEND_HOST + '/test12',
       {fileName: fileName, file: imageFile},
       {responseType: 'text', withCredentials: true }).pipe(
       map(response => response));

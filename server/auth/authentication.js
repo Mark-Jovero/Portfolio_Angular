@@ -65,9 +65,9 @@ app.post('/user/login', (req, res) => {
                 
                 create_session_id(result[0].id, session_cookie, device_information, req.socket.remoteAddress, function(csi_err, csi_res) {
                     if (csi_err)
-                        res.send(new responseJSON({__status:false, message:msg.SQL_ERROR+' -> Session Server', hasError:true, errorMessage:csi_err}))
+                        return res.send(new responseJSON({__status:false, message:msg.SQL_ERROR+' -> Session Server', hasError:true, errorMessage:csi_err}))
                     else {
-                        res.send(new responseJSON({__status:true, message:msg.SUCCESS_LOGIN}));
+                        return res.send(new responseJSON({__status:true, message:msg.SUCCESS_LOGIN}));
                     }
                 });
             });

@@ -58,7 +58,7 @@ export class LoginService {
         return -1+'';
       }
     }
-    console.log(this.payload)
+    console.log(this.payload , '!!!')
     let parsedPayload = JSON.parse(this.payload);
     console.log(parsedPayload)
     let status = parsedPayload.__status;

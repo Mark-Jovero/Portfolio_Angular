@@ -15,12 +15,12 @@ export const AuthGuard = async () => {
   await ls.validateSession(cookieRead.read('user_id'), cookieRead.read('session_cookie'));
 
   if (ls.isLoggedIn.getValue()) {
-    if (isDevMode())
+    //if (isDevMode())
       console.log('AUTH GUARD SUCCESS : going to admin due to valid session')
     return true;
   }
 
-  if (isDevMode())
+  //if (isDevMode())
     console.log('AUTH GUARD FAIL : going to login page due to invalid session')
   //return false;
   return router.parseUrl('auth/login');
