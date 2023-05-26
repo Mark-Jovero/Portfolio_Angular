@@ -6,7 +6,7 @@ export class iFrameComponent implements Tag{
   end: string = '</iframe>';
   hasSeparateEndTag: boolean = true;
 
-  allowedAttributes = ['style', 'width', 'height']
+  allowedAttributes = ['style', 'width', 'height', 'src']
 
   getTag(): string {
     return this.tag;
